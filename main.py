@@ -2,7 +2,7 @@
 
 # INCLUDES
 import pygame
-from time import sleep
+from time import sleep, time
 from random import randrange
 from pygame.locals import *
 from variables import *
@@ -31,20 +31,22 @@ def message_display(text):
 	textRectangle.center = ((screenWidth/2), (screenHeight/2))
 	screen.blit(textSurface, textRectangle)
 	pygame.display.flip()
-	sleep(3)
+	sleep(2)
 	main()
 
 def crashCar():
 	message_display('You crashed!')
 
 def main():
-	carPosX = 500
-	carPosY = 330
+	carPosX = 575
+	carPosY = 475
 	carPosXChange = 0
 	
 	trafficPosX = randrange(0, screenWidth)
 	trafficPosY = -600
-	trafficSpeed = 7
+	trafficSpeed = 3
+	
+	startTime = time()
 
 	exit = False
 	while not exit:
@@ -62,10 +64,13 @@ def main():
 			if event.type == pygame.KEYUP:
 				if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
 					carPosXChange = 0
+
+		checkTime = time()
+		print(round(checkTime - startTime))
 		
 		carPosX = carPosX + carPosXChange
 		screen.fill(white)
-		
+
 		traffic(trafficPosX, trafficPosY)
 		trafficPosY = trafficPosY + trafficSpeed
 		
@@ -79,6 +84,10 @@ def main():
 			trafficPosY = 0 - carHeight
 			trafficPosX = randrange(0, screenWidth)
 			
+		if carPosY < (trafficPosY + carHeight):
+			if carPosX > trafficPosX and carPosX < (trafficPosX + carWidth) or (carPosX + carWidth) > trafficPosX and (carPosX + carWidth) < (trafficPosX + carWidth):
+				crashCar()
+
 		pygame.display.flip()
 		FPS.tick(120)
 
@@ -88,6 +97,11 @@ quit()
 
 
 
+# to do:
+# legge til coins
+# øke fart etter sekunder
+# fikse sekunder timer
+# fikse musikk
 
 
 

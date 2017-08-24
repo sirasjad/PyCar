@@ -8,8 +8,8 @@ screenWidth = 1280
 screenHeight = 720
 
 # CAR IMAGE RESOLUTION
-carWidth = 234
-carHeight = 368
+carWidth = 107
+carHeight = 195
 
 # COLORS
 darkgreen = (0, 100, 0)
