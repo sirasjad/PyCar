@@ -1,5 +1,5 @@
 # STATIC VARIABLES
-project = "PyCar"
+title = "PyCar"
 dev1 = "Sirajuddin Asjad"
 dev2 = "Kirisan Manivannan"
 

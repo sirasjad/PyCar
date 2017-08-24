@@ -1,2 +1,5 @@
 # Pygame
-Car simulator developed in Python 3 (WIP)
+This project is in development.
+
+Credits (to be updated):
+Joakim Bjørk, Børge Kile Gjelsten
