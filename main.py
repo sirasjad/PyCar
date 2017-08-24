@@ -2,5 +2,6 @@
 
 # INCLUDES
 from modules import *
+from static import *
 
 # MAIN
