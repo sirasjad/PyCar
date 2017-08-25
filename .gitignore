@@ -1,0 +1,5 @@
+# GITIGNORE LIST:
+###################
+__pycache__/
+*.ini
+*.log
