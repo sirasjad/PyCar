@@ -1,5 +1,6 @@
 # STATIC VARIABLES
 title = "PyCar"
+version = "1.0"
 dev1 = "Sirajuddin Asjad"
 dev2 = "Kirisan Manivannan"
 
