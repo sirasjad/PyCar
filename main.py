@@ -48,7 +48,7 @@ def crashCar():
 	message_display('GAME  OVER')
 
 def background():
-	backImg = pygame.image.load('inc/road.png')
+	backImg = pygame.image.load('inc/road.jpg')
 	backRectangle = backImg.get_rect()
 	screen.blit(backImg, backRectangle)
 
@@ -66,7 +66,7 @@ def loader():
 		screen.blit(loadImg, loadRectangle)
 		pygame.display.flip()
 		
-		if time() > (loadTime + 5):
+		if time() > (loadTime + 7):
 			screen.fill(white)
 			pygame.display.flip()
 			loading = False
@@ -92,9 +92,9 @@ def main():
 				
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_LEFT:
-					carPosXChange = -5
+					carPosXChange = -25
 				elif event.key == pygame.K_RIGHT:
-					carPosXChange = 5
+					carPosXChange = 25
 			
 			if event.type == pygame.KEYUP:
 				if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -103,21 +103,20 @@ def main():
 		background()
 		checkTime = time()
 		
-		if checkTime > (startTime + 5):
-			# trafficSpeed = 6
-			trafficSpeed = 60
-		if checkTime > (startTime + 10):
-			# trafficSpeed = 10
-			trafficSpeed = 100
+		if checkTime > (startTime + 7):
+			trafficSpeed = 7
 		if checkTime > (startTime + 15):
-			# trafficSpeed = 15
-			trafficSpeed = 150
+			trafficSpeed = 15
+		if checkTime > (startTime + 25):
+			trafficSpeed = 25
+		if checkTime > (startTime + 40):
+			trafficSpeed = 40
 		
 		carPosX = carPosX + carPosXChange
 
 		traffic(trafficPosX, trafficPosY)
 		trafficPosY = trafficPosY + trafficSpeed
-		
+
 		car(carPosX, carPosY)
 		printTimer(round(checkTime - startTime))
 		countScore(score)
@@ -135,7 +134,7 @@ def main():
 				crashCar()
 
 		pygame.display.flip()
-		FPS.tick(120)
+		FPS.tick(60)
 
 loader()
 main()
@@ -144,5 +143,13 @@ quit()
 
 # Spørre lærer: hvorfor lagger det, scrolling background
 # Husk kilder
+
+# Kilder:
+# Joakim Bjørk, HSN Kongsberg
+# Børge Kile Gjelsten, HSN Kongsberg
+# Javid, HSN Kongsberg
+# YouTube: sentdex ("Game Development in Python 3 With PyGame Tutorial")
+# StackOverflow: https://stackoverflow.com/questions/43077272/pygame-scrolling
+# Notater: http://kilelabs.no/p/pythontutorial_hsn_kongsberg_aug2017.html
 
 
