@@ -13,6 +13,7 @@ screen = pygame.display.set_mode((screenWidth, screenHeight))
 pygame.display.set_caption(title)
 FPS = pygame.time.Clock()
 
+# FUNCTIONS
 def printTimer(seconds):
 	font = pygame.font.Font('freesansbold.ttf', 20)
 	text = font.render("Time:  %i seconds" % int(seconds), True, black)
@@ -25,19 +26,21 @@ def countScore(count):
 
 def traffic(x, y):
 	blueCar = pygame.image.load('inc/car2.png')
+	blueCar = blueCar.convert_alpha()
 	screen.blit(blueCar, (x, y))
 
 def car(x, y):
 	carImg = pygame.image.load('inc/car.png')
+	carImg = carImg.convert_alpha()
 	screen.blit(carImg, (x, y))
 
-def text_objects(text, font):
+def textprint(text, font):
 	textSurface = font.render(text, True, black)
 	return textSurface, textSurface.get_rect()
 
-def message_display(text):
+def displaytext(text):
 	largeText = pygame.font.Font('freesansbold.ttf', 115)
-	textSurface, textRectangle = text_objects(text, largeText)
+	textSurface, textRectangle = textprint(text, largeText)
 	textRectangle.center = ((screenWidth/2), (screenHeight/2))
 	screen.blit(textSurface, textRectangle)
 	pygame.display.flip()
@@ -45,12 +48,16 @@ def message_display(text):
 	main()
 
 def crashCar():
-	message_display('GAME  OVER')
+	displaytext('GAME  OVER')
 
-def background():
+def background(y):
 	backImg = pygame.image.load('inc/road.jpg')
-	backRectangle = backImg.get_rect()
-	screen.blit(backImg, backRectangle)
+	backImg = backImg.convert_alpha()
+	backImgHeight = backImg.get_rect().height
+	scrollY = y % backImgHeight
+	screen.blit(backImg, (0, scrollY - backImgHeight))
+	if scrollY < screenHeight:
+		screen.blit(backImg, (0, scrollY))
 
 def loader():
 	loadTime = time()
@@ -62,6 +69,7 @@ def loader():
 				quit()
 		
 		loadImg = pygame.image.load('inc/loading.png')
+		loadImg = loadImg.convert_alpha()
 		loadRectangle = loadImg.get_rect()
 		screen.blit(loadImg, loadRectangle)
 		pygame.display.flip()
@@ -75,11 +83,10 @@ def main():
 	carPosX = 610
 	carPosY = 475
 	carPosXChange = 0
-	
+	backImgScrollSpeed = 0
 	trafficPosX = randrange(220, 980)
 	trafficPosY = -600
-	trafficSpeed = 3
-
+	trafficSpeed = 5
 	startTime = time()
 	score = 0
 
@@ -100,23 +107,30 @@ def main():
 				if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
 					carPosXChange = 0
 		
-		background()
-		checkTime = time()
-		
-		if checkTime > (startTime + 7):
-			trafficSpeed = 7
-		if checkTime > (startTime + 15):
-			trafficSpeed = 15
-		if checkTime > (startTime + 25):
+		checkTime = time()	
+		background(backImgScrollSpeed)
+
+		if checkTime >= startTime:
+			backImgScrollSpeed = backImgScrollSpeed + 10
+			
+		if checkTime > (startTime + 10):
+			trafficSpeed = 8
+			backImgScrollSpeed = backImgScrollSpeed + 13
+			
+		if checkTime > (startTime + 20):
+			trafficSpeed = 12
+			backImgScrollSpeed = backImgScrollSpeed + 17
+			
+		if checkTime > (startTime + 35):
 			trafficSpeed = 25
+			backImgScrollSpeed = backImgScrollSpeed + 20
+			
 		if checkTime > (startTime + 40):
-			trafficSpeed = 40
+			trafficSpeed = 35
 		
 		carPosX = carPosX + carPosXChange
-
 		traffic(trafficPosX, trafficPosY)
 		trafficPosY = trafficPosY + trafficSpeed
-
 		car(carPosX, carPosY)
 		printTimer(round(checkTime - startTime))
 		countScore(score)
@@ -134,16 +148,14 @@ def main():
 				crashCar()
 
 		pygame.display.flip()
-		FPS.tick(60)
+		FPS.tick(500)
 
 loader()
 main()
 pygame.quit()
 quit()
 
-# Spørre lærer: hvorfor lagger det, scrolling background
-# Husk kilder
-
+# -------------------------------------------------------------------------------
 # Kilder:
 # Joakim Bjørk, HSN Kongsberg
 # Børge Kile Gjelsten, HSN Kongsberg
@@ -151,5 +163,4 @@ quit()
 # YouTube: sentdex ("Game Development in Python 3 With PyGame Tutorial")
 # StackOverflow: https://stackoverflow.com/questions/43077272/pygame-scrolling
 # Notater: http://kilelabs.no/p/pythontutorial_hsn_kongsberg_aug2017.html
-
 
