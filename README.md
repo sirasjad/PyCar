@@ -1,20 +1,14 @@
-# Pygame
-This project is in development.
+# PyCar
+PyCar is a school project developed in Python 3 using a module called PyGame. It is a simple 2D-based car simulator, where your goal is to avoid crashing other vehicles. You gain score for every vehicle you don't crash, and the simulator speeds up gradually to make it harder to survive. Let me know if there are any bugs. Thanks and good luck!
 
-Project developers:
+### Game preview:
+Link: 
+
+### Screenshots:
+
+
+### Project developers:
 Sirajuddin Asjad, Kirisan Manivannan
 
-Thanks to:
+### Thanks to:
 Joakim Bjørk, Børge Kile Gjelsten
-
-
-
-
-# -------------------------------------------------------------------------------
-# Kilder:
-# Joakim Bjørk, HSN Kongsberg
-# Børge Kile Gjelsten, HSN Kongsberg
-# Javid, HSN Kongsberg
-# YouTube: sentdex ("Game Development in Python 3 With PyGame Tutorial")
-# StackOverflow: https://stackoverflow.com/questions/43077272/pygame-scrolling
-# Notater: http://kilelabs.no/p/pythontutorial_hsn_kongsberg_aug2017.html
