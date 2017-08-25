@@ -1,5 +1,8 @@
 # Pygame
 This project is in development.
 
-Credits (to be updated):
+Project developers:
+Sirajuddin Asjad, Kirisan Manivannan
+
+Thanks to:
 Joakim Bjørk, Børge Kile Gjelsten
