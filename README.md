@@ -5,7 +5,7 @@ PyCar is a school project developed in Python 3 using a module called PyGame. It
 Link: 
 
 ### Screenshots:
-![](https://i.imgur.com/9umYa8M.png)
+![](http://i.imgur.com/r9d14OG.png)
 
 ### Project developers:
 Sirajuddin Asjad, Kirisan Manivannan
